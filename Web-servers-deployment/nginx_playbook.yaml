@@ -17,7 +17,23 @@
         name: epel-release
         update_cache: yes
         state : latest
-      when: ansible_distribution =='CentOS'
+      when: ansible_distribution == 'CentOS'
+    - name : Install Nginx
+      package:
+        name: nginx
+        update_cache: yes
+        state: latest
+    - name : Nginxstart-enabled
+      service:
+        name: nginx
+        state: restarted
+        daemon_reload: yes  
+  # Handlers: the list of handlers that are executed as a notify key from a task
+    
+  # Handlers: the list of handlers that are executed as a notify key from a task
+
+  # Handlers: the list of handlers that are executed as a notify key from a task
+     
   # Handlers: the list of handlers that are executed as a notify key from a task
 
 # Three dots indicate the end of a YAML document
