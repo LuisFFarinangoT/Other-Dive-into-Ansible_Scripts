@@ -27,9 +27,14 @@
       service:
         name: nginx
         state: restarted
-        daemon_reload: yes  
+      notify: Check-http-service  
   # Handlers: the list of handlers that are executed as a notify key from a task
-    
+  handlers:  
+    - name : Check-http-service
+      uri:
+        url : http://{{ansible_default_ipv4.address}}
+        status_code: 200
+
   # Handlers: the list of handlers that are executed as a notify key from a task
 
   # Handlers: the list of handlers that are executed as a notify key from a task
