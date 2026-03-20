@@ -32,9 +32,18 @@
       notify: Check-http-service 
     - name : Template to change index.html location
       template:
-       src: index.html-logos.j2
+       src: index.html-easter_egg.j2
        dest: "{{ nginx_root_location }}//index.html"
-       mode : 0644 
+       mode : 0644
+    - name: Install unzip
+      package: 
+        name: unzip
+        state: latest
+    - name : Unarchive playbook 
+      unarchive:
+        src: playbook_stacker.zip
+        dest: "{{ nginx_root_location }}"
+        mode : 0755
   # Handlers: the list of handlers that are executed as a notify key from a task
   handlers:  
     - name : Check-http-service
