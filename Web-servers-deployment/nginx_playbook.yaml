@@ -8,7 +8,9 @@
   # Hosts: where our play will run and options it will run with
   hosts: linux
   # Vars: variables that will apply to the play, on all target systems
-
+  vars_files:
+    - vars/logos.yaml
+  
   # Tasks: the list of tasks that will be executed within the play, this section
   # can also be used for pre and post tasks
   tasks:
@@ -30,8 +32,8 @@
       notify: Check-http-service 
     - name : Template to change index.html location
       template:
-       src: index.html-base.j2
-       dest: "{{ nginx_root_location}}//index.html"
+       src: index.html-logos.j2
+       dest: "{{ nginx_root_location }}//index.html"
        mode : 0644 
   # Handlers: the list of handlers that are executed as a notify key from a task
   handlers:  
